@@ -2,6 +2,8 @@ const express = require("express");
 const ctrl = require("../../controllers");
 const router = express.Router();
 
+console.log(ctrl.contacts.listContacts);
+
 router.get("/", ctrl.contacts.listContacts);
 
 router.get("/:contactId", ctrl.contacts.getContactById);
