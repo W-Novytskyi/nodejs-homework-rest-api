@@ -1,15 +1,19 @@
 const express = require("express");
-const ctrl = require("../../controllers/contacts");
+const ctrl = require("../../controllers");
 const router = express.Router();
 
-router.get("/", ctrl.listContacts);
+console.log(ctrl.contacts.listContacts);
 
-router.get("/:contactId", ctrl.getContactById);
+router.get("/", ctrl.contacts.listContacts);
 
-router.post("/", ctrl.addContact);
+router.get("/:contactId", ctrl.contacts.getContactById);
 
-router.delete("/:contactId", ctrl.removeContact);
+router.post("/", ctrl.contacts.addContact);
 
-router.put("/:contactId", ctrl.updateContact);
+router.delete("/:contactId", ctrl.contacts.removeContact);
+
+router.put("/:contactId", ctrl.contacts.updateContact);
+
+router.patch("/:contactId/favorite", ctrl.contacts.updateStatusContact);
 
 module.exports = router;
