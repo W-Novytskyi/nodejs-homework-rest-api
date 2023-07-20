@@ -29,9 +29,15 @@ const userSchema = new Schema(
 userSchema.post("save", handleMongooseError);
 
 const registerSchema = Joi.object({
-  password: Joi.string().min(8).required(),
-  email: Joi.string().email().required(),
-  subscription: Joi.string().required(),
+  password: Joi.string().min(8).required().messages({
+    "string.empty": `Password is required`,
+    "string.min": `Password should have a minimum length of {#limit}`,
+  }),
+  email: Joi.string()
+    .email()
+    .required()
+    .messages({ "string.empty": `Email is required` }),
+  subscription: Joi.string(),
   token: Joi.string(),
 });
 
