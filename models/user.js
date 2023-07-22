@@ -52,10 +52,15 @@ const loginSchema = Joi.object({
     .messages({ "string.empty": `Email is required` }),
 });
 
+const updateSubscriptionSchema = Joi.object({
+  subscription: Joi.string().valid("starter", "pro", "business").required(),
+});
+
 const User = model("user", userSchema);
 
 module.exports = {
   User,
   registerSchema,
   loginSchema,
+  updateSubscriptionSchema,
 };
