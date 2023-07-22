@@ -2,7 +2,8 @@ const { Contact } = require("../../models/contact");
 const { ctrlWrapper } = require("../../helpers");
 
 const listContacts = async (req, res) => {
-  const result = await Contact.find({}, "-createdAt -updatedAt");
+  const { _id: owner } = req.user;
+  const result = await Contact.find({ owner }, "-createdAt -updatedAt");
   res.json(result);
 };
 
