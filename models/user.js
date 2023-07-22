@@ -42,8 +42,14 @@ const registerSchema = Joi.object({
 });
 
 const loginSchema = Joi.object({
-  password: Joi.string().min(8).required(),
-  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required().messages({
+    "string.empty": `Password is required`,
+    "string.min": `Password should have a minimum length of {#limit}`,
+  }),
+  email: Joi.string()
+    .email()
+    .required()
+    .messages({ "string.empty": `Email is required` }),
 });
 
 const User = model("user", userSchema);
