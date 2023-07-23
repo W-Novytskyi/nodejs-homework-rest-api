@@ -14,11 +14,11 @@ router.patch(
   authenticate,
   ctrl.users.updateSubscription
 );
-router.patch(
-  "/users/avatars",
-  authenticate,
-  upload.single("avatar"),
-  ctrl.users.updateAvatar
-);
+// router.patch(
+//   "/users/avatars",
+//   authenticate,
+//   upload.single("avatar"),
+//   ctrl.users.updateAvatar
+// );
 
 module.exports = router;
