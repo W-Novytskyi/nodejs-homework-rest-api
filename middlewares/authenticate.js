@@ -7,7 +7,7 @@ const SECRET_KEY = "S6XLr6_C'f?9nZ8`l^`gt%jo=8$*s]";
 const authenticate = async (req, res, next) => {
   const { authorization = "" } = req.headers;
   const [bearer, token] = authorization.split(" ");
-  if (bearer !== "Bearer") {
+  if (!authorization || bearer !== "Bearer") {
     next(HttpError(401, "Not authorized"));
   }
   try {
