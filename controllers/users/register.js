@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const gravatar = require("gravatar");
 const { User, registerSchema } = require("../../models/user");
 const { HttpError, ctrlWrapper } = require("../../helpers");
 
@@ -16,7 +17,12 @@ const register = async (req, res) => {
     throw HttpError(409, "Email in use");
   }
   const hashPassword = await bcrypt.hash(password, 10);
-  const newUser = await User.create({ ...req.body, password: hashPassword });
+  const avatarURL = gravatar.url(email);
+  const newUser = await User.create({
+    ...req.body,
+    password: hashPassword,
+    avatarURL,
+  });
   res.status(201).json({
     user: {
       email: newUser.email,
@@ -26,16 +32,3 @@ const register = async (req, res) => {
 };
 
 module.exports = ctrlWrapper(register);
-
-// "user": {
-//     "email": "example@example.com",
-//     "subscription": "starter"
-//   }
-// const addContact = async (req, res) => {
-//   const { error } = addSchema.validate(req.body);
-//   if (error) {
-//     throw HttpError(400, "missing required name field");
-//   }
-//   const result = await Contact.create(req.body);
-//   res.status(201).json(result);
-// };
