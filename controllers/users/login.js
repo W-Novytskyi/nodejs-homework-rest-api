@@ -2,8 +2,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, loginSchema } = require("../../models/user");
 const { HttpError, ctrlWrapper } = require("../../helpers");
+require("dotenv").config();
 
-const SECRET_KEY = "S6XLr6_C'f?9nZ8`l^`gt%jo=8$*s]";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const login = async (req, res) => {
   const { error } = loginSchema.validate(req.body, { abortEarly: false });
