@@ -16,8 +16,3 @@ mongoose
     console.log(error.message);
     process.exit(1);
   });
-// NFpDcwguFvPZGCph    NFpDcwguFvPZGCph
-
-// , () => {
-//   console.log("Server running. Use our API on port: 3000");
-// });
