@@ -1,9 +1,8 @@
 const app = require("./app");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-const DB_HOST =
-  "mongodb+srv://Viacheslav:NFpDcwguFvPZGCph@cluster0.ni12onf.mongodb.net/db-contacts?retryWrites=true&w=majority";
-
+const DB_HOST = process.env.DB_HOST;
 mongoose.set("strictQuery", true);
 
 mongoose
@@ -16,8 +15,3 @@ mongoose
     console.log(error.message);
     process.exit(1);
   });
-// NFpDcwguFvPZGCph    NFpDcwguFvPZGCph
-
-// , () => {
-//   console.log("Server running. Use our API on port: 3000");
-// });
